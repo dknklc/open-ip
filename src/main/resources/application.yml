@@ -12,6 +12,7 @@ ip-stack:
   api-url: http://api.ipstack.com/
   api-key: ${API_KEY:default}
 
+
 resilience4j:
   ratelimiter:
     instances:
@@ -19,3 +20,11 @@ resilience4j:
         limit-for-period: 10
         limit-refresh-period: 1m
         timeout-duration: 10s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "*"
+          - prometheus
