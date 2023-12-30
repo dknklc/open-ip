@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  app:
+    image: 'open-ip:latest'
+    build:
+      context: .
+    ports:
+      - "9585:8080"
+    environment:
+      - "API_KEY=${API_KEY}"

@@ -3,6 +3,7 @@ package com.dekandev.ip.controller;
 import com.dekandev.ip.controller.validation.IpAddressConstraint;
 import com.dekandev.ip.dto.IpDto;
 import com.dekandev.ip.service.IpService;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -23,6 +24,7 @@ public class IpController {
     }
 
     @GetMapping("/{ip}")
+    @RateLimiter(name = "basic")
     public ResponseEntity<IpDto> getCity(@PathVariable @IpAddressConstraint @NotBlank String ip) {
         return ResponseEntity.ok(ipService.getCityByIpAddress(ip));
     }
